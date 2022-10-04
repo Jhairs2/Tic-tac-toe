@@ -119,7 +119,7 @@ const displayController = (() => {
         gridSquare.forEach(square => {
             square.addEventListener("click", () => {
 
-                if (square.textContent != "" || endGameNoWinner()) return;
+                if (square.textContent != "" || endGameNoWinnner()) return;
 
                 gameBoard.addSymbolToSquare(square.dataset.index, gameController.getPlayerPick());
                 square.textContent = gameBoard.getSymbolAtindex(square.dataset.index);
