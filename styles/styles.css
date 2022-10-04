@@ -1,0 +1,16 @@
+*, *::before, *::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.grid {
+    display: grid;
+    grid-template: repeat(3, 1fr) / repeat(3, 1fr);
+    width: 200px;
+    height: 200px;
+}
+
+.square {
+    border: 2px solid black;
+}
