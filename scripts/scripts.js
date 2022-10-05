@@ -66,7 +66,7 @@ const gameController = (() => {
 
 
 
-    return { decideWinner, player1, decideTie, aiPlayer};
+    return { decideWinner, player1, decideTie, aiPlayer };
 
 
 })()
@@ -118,18 +118,21 @@ const displayController = (() => {
         gridSquare.forEach(square => {
             square.addEventListener("click", () => {
                 if (square.textContent != "" || endGame()) return;
-                gameBoard.addSymbolToSquare(square.dataset.index, gameController.player1.getSymbol());
-                playersTurn = false;
-                endGame();
-                updateDisplay();
                 
-                if (playersTurn == false) {
-                    setTimeout(function() {
-                    gameController.aiPlayer();
-                    playersTurn = true;
+                if (playersTurn) {
+                    gameBoard.addSymbolToSquare(square.dataset.index, gameController.player1.getSymbol());
+                    playersTurn = false;
                     endGame();
                     updateDisplay();
-                }, 500)
+                }
+
+                if (playersTurn == false) {
+                    setTimeout(function () {
+                        gameController.aiPlayer();
+                        playersTurn = true;
+                        endGame();
+                        updateDisplay();
+                    }, 500)
                 }
 
             })
@@ -172,7 +175,7 @@ const displayController = (() => {
     // Event Listeners
     resetBttn.addEventListener("click", reset);
 
-    return { addUserPickToBoard};
+    return { addUserPickToBoard };
 
 })()
 
