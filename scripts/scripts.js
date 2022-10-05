@@ -122,12 +122,14 @@ const displayController = (() => {
                 playersTurn = false;
                 endGame();
                 updateDisplay();
-
+                
                 if (playersTurn == false) {
-                    playersTurn = true;
+                    setTimeout(function() {
                     gameController.aiPlayer();
+                    playersTurn = true;
                     endGame();
                     updateDisplay();
+                }, 500)
                 }
 
             })
