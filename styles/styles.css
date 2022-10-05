@@ -4,13 +4,26 @@
     box-sizing: border-box;
 }
 
+:root {
+    height: 100%;
+    width: 100%;
+    --grid-box-shadow: 2px 2px 2px #1f2937;
+}
+
+body {
+    height: 100%;
+    width: 100%;
+}
+
 .grid {
     display: grid;
     grid-template: repeat(3, 1fr) / repeat(3, 1fr);
-    width: 200px;
-    height: 200px;
+    width: 300px;
+    height: 300px;
+    
 }
 
 .square {
     border: 2px solid black;
+    box-shadow: var(--grid-box-shadow);
 }
