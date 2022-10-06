@@ -16,9 +16,9 @@
     height: 100%;
     width: 100%;
     --body-background-color: #e2e8f0;
-    
+
     --grid-border: 4px solid black;
-    
+
     --square-font-size: 7rem;
     --square-border: 2px solid #f5f5f4;
     --square-box-shadow: 2px 1px 2px #1f2937;
@@ -27,7 +27,8 @@
     --square-background-color-hover: rgba(0 0 0 / 0.5);
     --square-font-family: Panton, 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
 
-    --header-font-size: clamp(2rem, 1.1000rem + 4.0000vw, 5rem);;
+    --header-font-size: clamp(2rem, 1.1000rem + 4.0000vw, 5rem);
+    ;
     --header-box-shadow: 4px 4px 4px #1f2937;
     --header-font-family: Panton, 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
     --header-background-color: #64748b;
@@ -59,7 +60,7 @@ header {
     background-color: var(--header-background-color);
     box-shadow: var(--header-box-shadow);
     font-family: var(--header-font-family);
-    
+
 
 }
 
@@ -83,7 +84,7 @@ header {
 
 .square {
     text-align: center;
-    font-family:var(--square-font-family);
+    font-family: var(--square-font-family);
     text-shadow: var(--square-text-shadow);
     border: var(--square-border);
     font-size: var(--square-font-size);
