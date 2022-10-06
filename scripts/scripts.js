@@ -1,5 +1,6 @@
 "use strict";
 
+
 // Create factory function for players, will return name and game symbol
 const Player = (name, symbol) => {
     const sayName = () => console.log("My name is", name, "and my symbol is", symbol);
@@ -7,7 +8,7 @@ const Player = (name, symbol) => {
     return { getSymbol, sayName, name };
 
 
-}
+};
 
 // Modules 
 
@@ -70,7 +71,7 @@ const gameController = (() => {
     return { decideWinner, player1, player2, decideTie, aiPlayer };
 
 
-})()
+})();
 
 // Module for gameboard
 const gameBoard = (() => {
@@ -103,7 +104,7 @@ const gameBoard = (() => {
 
     return { gameboard, reset, addSymbolToSquare, getSymbolAtindex }
 
-})()
+})();
 
 // Module to control the user interactivity
 const displayController = (() => {
@@ -194,15 +195,15 @@ const displayController = (() => {
 
     })
 
-    updateMessageDisplay()
-
+    updateMessageDisplay();
+    addUserPickToBoard();
 
     return { addUserPickToBoard };
 
-})()
+})();
 
 
-displayController.addUserPickToBoard();
+
 
 
 
