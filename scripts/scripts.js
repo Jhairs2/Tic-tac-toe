@@ -19,7 +19,7 @@ const gameController = (() => {
     const player1 = Player(prompt("Type your name:"), "X");
 
     // If player inputs nothing give default name
-    if (player1.name == null) {
+    if (player1.name == null || player1.name == "") {
         player1.name = "Player X";
     }
     const player2 = Player("CPU", "O");
