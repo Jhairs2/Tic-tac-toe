@@ -20,7 +20,7 @@ const gameController = (() => {
 
     // If player inputs nothing give default name
     if (player1.name == null || player1.name == "") {
-        player1.name = "Player X";
+        player1.name = "Player";
     }
     const player2 = Player("CPU", "O");
 
