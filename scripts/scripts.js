@@ -15,8 +15,8 @@ const Player = (name, symbol) => {
 const gameController = (() => {
 
     // Create players and variables to be used in module
-    const player2 = Player("Player 2", "O");
-    const player1 = Player("Justin", "X");
+    const player1 = Player(prompt("Type your name:"), "X");
+    const player2 = Player("CPU", "O");
 
 
     // Will calculate if there is a winner and return null otherwise
@@ -47,11 +47,12 @@ const gameController = (() => {
     const decideTie = () => {
         if ((!decideWinner()) && (gameBoard.gameboard.every(element => element != ""))) {
             console.log("Tie Game");
+            return true;
         }
     }
 
 
-
+    // Create ai logic, right now just make ai move at random
     const aiPlayer = () => {
         let randNum = Math.floor(Math.random() * 9);
         if (!(decideWinner())) {
@@ -66,7 +67,7 @@ const gameController = (() => {
 
 
 
-    return { decideWinner, player1, decideTie, aiPlayer };
+    return { decideWinner, player1, player2, decideTie, aiPlayer };
 
 
 })()
@@ -110,6 +111,7 @@ const displayController = (() => {
     // Create variables to be used in module
     const gridSquare = document.querySelectorAll(".square");
     const resetBttn = document.querySelector(".reset");
+    const message = document.querySelector("#message");
     let playersTurn = true;
 
     // Function that will allow user to pick a square in gameboard and play game
@@ -118,7 +120,7 @@ const displayController = (() => {
         gridSquare.forEach(square => {
             square.addEventListener("click", () => {
                 if (square.textContent != "" || endGame()) return;
-                
+
                 if (playersTurn) {
                     gameBoard.addSymbolToSquare(square.dataset.index, gameController.player1.getSymbol());
                     playersTurn = false;
@@ -141,39 +143,59 @@ const displayController = (() => {
 
     }
 
+    // Keep track of game flow and display to user
+    const updateMessageDisplay = () => {
+        if (!(endGame())) {
+            if (playersTurn) {
+                message.textContent = `${gameController.player1.name}'s turn`
+            } else {
+                message.textContent = `${gameController.player2.name}'s turn`
+            }
+        }
+    }
+
+    // Update symbols on board and game messaging
     const updateDisplay = () => {
         gridSquare.forEach(square => {
             square.textContent = gameBoard.getSymbolAtindex(square.dataset.index);
         })
+        updateMessageDisplay();
     }
 
     // Will return true if a winner or tie has been found and end game
     const endGame = () => {
 
         if (gameController.decideWinner()) {
+            if (gameController.decideWinner() == "X") {
+                message.textContent = `${gameController.player1.name} Wins!`
+            } else {
+                message.textContent = `${gameController.player2.name} Wins!`
+            }
             console.log(`${gameController.decideWinner()} is the mothafreakin man!`);
             return true;
         };
 
         if (gameController.decideTie()) {
+            message.textContent = "Tie Game!"
             return true;
-
         }
+
         return false;
     }
 
     // Will reset the gameboard and gridSquares 
-    const reset = () => {
+    resetBttn.addEventListener("click", () => {
         gameBoard.reset();
         console.log(gameBoard.gameboard);
         gridSquare.forEach(square => {
             square.textContent = "";
         })
+        message.textContent = `${gameController.player1.name}'s turn`
 
-    }
+    })
 
-    // Event Listeners
-    resetBttn.addEventListener("click", reset);
+    updateMessageDisplay()
+
 
     return { addUserPickToBoard };
 
